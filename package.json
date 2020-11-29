@@ -1,0 +1,35 @@
+{
+  "name": "harsha",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "debug": "^2.6.9",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.6",
+    "express-session": "^1.16.2",
+    "fileload": "^2.0.0",
+    "forever": "^1.0.0",
+    "fs": "0.0.1-security",
+    "http-errors": "^1.8.0",
+    "jade": "^1.11.0",
+    "jquery": "^3.5.1",
+    "messagebird": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.0",
+    "morgan": "^1.9.1",
+    "node-input-validator": "^4.0.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "sendemail": "^3.4.0",
+    "session": "^0.1.0"
+  }
+}

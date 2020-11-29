@@ -1,0 +1,81 @@
+html
+	title Contact
+	include header.pug
+	head
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+	body
+		style.
+			.gap {
+			margin-bottom: 20px;
+			margin-top: 80px;
+			}
+			label {
+			font-weight: 500 !important;
+			margin-top: 13px;
+			color: white;
+			}
+			body {
+			font-family: 'Times New Roman';
+			background: url('/images/nature.jpg');
+			background-size: cover;
+			background-attachment: fixed;
+			}
+			h3,h5,p{
+			color: white;
+			}
+			.form-control{
+			background: rgba(225, 255, 255, 0.2);
+			border: 0;
+			border-radius: 0;
+			border-bottom: 2px solid green;
+			font-size: 21px;
+			color: white;
+			}
+			.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			}
+		.container.gap
+			.row
+				.col-md-5
+					label Name:
+					input#username.form-control(type='text', name='username', placeholder='Name')
+					label Mobile:
+					input#mobile.form-control(type='text', name='mobile', placeholder='Mobile')
+					label Email:
+					input#email.form-control(type='email', name='email', placeholder='Email')
+					label Enter Your Query:
+					textarea#query.form-control(name='query', placeholder='Query')
+					input.btn.btn-lg.btn-success(type='submit', name='submit', value='Submit', style='margin-top: 30px')
+				.col-md-2
+				.col-md-1
+				.col-md-4.mt-2
+					h3(style='color:red;') ADDRESS
+					h5(style='font-weight:700;') Corporate Office
+					p
+						| PlotNo:24,Arunodaya Building,
+						br
+						| Paigah Colony, S.P Road,
+						br
+						| Secunderabad, Hyderabad-500006,
+						br
+						| Telangana, INDIA.
+						br
+						| Tel : (91)-040- 66200000
+						br
+						| Fax : (91)-040- 66204493
+						br
+						br
+						| Email Id:
+						br
+						| info@flytechaviation.aero
+						| admissions@flytechaviation.aero
+			.py-3.bg-dark.mb-0.footer
+				.container-fluid
+					p.m-0.p-0.text-center.text-white Copyright © Your Website 2019

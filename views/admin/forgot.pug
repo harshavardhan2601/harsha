@@ -1,0 +1,63 @@
+html
+	include header.pug
+	include main header.pug
+	head
+	title Forgot
+	style.
+		body {
+		text-align: center;
+		text-transform: capitalize;
+		}
+		.a {
+		box-shadow: 0 2px 4px;
+		}
+		.myint {
+		/* cursor: pointer; */
+		border-radius: 19px;
+		box-sizing: border-box;
+		}
+		body {
+		background: url('/images/login2.png');
+		background-size: cover;
+		height: auto;
+		background-attachment: fixed; 
+		}
+		.col-md-6 {
+		background-color: white;
+		}
+		.footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+		}
+		.field-icon {
+		float: right;
+		margin-left: -25px;
+		margin-top: -28px;
+		position: relative;
+		z-index: 2;
+		}
+		.fa-fw {
+		width: 3.285714em;
+		text-align: center;
+		}
+	body
+	.container-fluid.p-5.mt-4
+		form
+		.col-md-6.offset-md-3.text-center.p-5.mt-5
+			h2 Forgot password
+			.col-md-12.mt-5
+			.form-group
+				input.form-control.myint(type='Email', name='email', placeholder='Email', autocomplete='off')
+			.col-md-12
+			.row
+				.col-md-4
+				.col-md-4
+					a.input.btn.btn-dark.form-control.mb-1(type='submit', value='submit',href='/newpassword') submit
+				.col-md-4
+				
+	.py-3.bg-dark.mb-0.footer
+			.container-fluid
+				p.m-0.p-0.text-center.text-white Copyright © Your Website 2019

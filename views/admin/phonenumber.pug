@@ -1,0 +1,82 @@
+html
+	include headerpage.pug
+	head
+		title Verify
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+		style.
+			.required::after {
+			content: "*";
+			padding-left: 1%;
+			color: red;
+			}
+			body{
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			background: url('/images/desert.jpg');
+			background-size:cover;
+			}
+			.main-section{
+			margin: 0 auto;
+			margin-top: 130px;
+			padding: 0;
+			}
+			.modal-content{
+			background-color: #3b4652;
+			opacity: 0.95;
+			padding: 13% 18px;
+			box-shadow: 0 0 3px #848484;
+			}
+			.user-img{
+			margin-top: -80px;
+			margin-bottom: 35px;
+			}
+			.user-img img {
+			height: 100px;
+			width: 100px;
+			border-radius: 5px;
+			box-shadow: 0 0 2px #848484;
+			}
+			.form-group{
+			margin-bottom: 25px;
+			}
+			.form-group input{
+			height: 42px;
+			border-radius: 5px;
+			border: 0;
+			font-size: 18px;
+			}
+			button{
+			width: 40%;
+			margin: 5px 0 25px;
+			}
+			.btn{
+			background-color: #27c2a5;
+			color: #fff;
+			font-size: 19px;
+			padding: 7px 14px;
+			border-radius:5px;
+			border-bottom: 4px solid #219882;
+			}
+			.btn:hover .btn:focus{
+			background-color: #25a890;
+			border-bottom: 4px solid #25a890;
+			}
+			.forgot{
+			padding: 5px 0 25px;
+			}
+			.forgot a{
+			color: #c2fbfe;
+			}
+	body
+		.modal-dialog.text-center
+			.col-sm-8.main-section
+				.modal-content
+					.col-12.user-img
+						img(src="/images/otp.png")
+					form.col-12
+						.form-group
+							input#Email.form-control(type='text', accept='Number/*' name='Email', autocomplete='off' placeholder='phone number' required)
+							span#gmail.text-danger.font-weight-bold
+						a.btn.mr-3(href='#') Send OTP

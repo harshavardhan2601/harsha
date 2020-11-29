@@ -1,0 +1,100 @@
+html
+	include header.pug
+	include main header.pug
+	head
+		title login
+		//- link(rel='stylesheet', href='/assets/css/demo.css')
+		script(src='/assets/js/hideShowPassword.min.js')
+		style.
+			.a {
+			box-shadow: 0 2px 4px;
+			}
+			.myint {
+			/* cursor: pointer; */
+			border-radius: 19px;
+			box-sizing: border-box;
+			}
+			body {
+			background: url('/images/login2.png');
+			background-size: cover;
+			height: auto;
+			background-attachment: fixed;
+			}
+			.col-md-6 {
+			background-color: white;
+			}
+			.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			}
+			.field-icon {
+			float: right;
+			margin-left: -25px;
+			margin-top: -28px;
+			position: relative;
+			z-index: 2;
+			}
+			.fa-fw {
+			width: 3.285714em;
+			text-align: center;
+			}
+	body
+		.container-fluid.p-3.mt-4
+			form(action='/page', method='post')
+				.col-md-6.offset-md-3.text-center.mt-3.p-3
+					//- h1(style='color:black') Sign in
+					h1.text-center.mb-3
+						|  Sign in
+					.row.p-2
+						.col-md-6
+							a.button.btn.btn-primary.mb-1.form-control(type='button', href='#')
+								i.fa.fa-facebook
+								|  Sign in Facebook
+						.col-md-6
+							a.button.btn.btn-danger.form-control(type='button', href='#')
+								i.fa.fa-google
+								|  Sign in Google
+					.some.p-2.text-center
+						h5 OR
+					.col-md-12
+						.form-group
+							input.form-control.myint(type='Email', name='email', placeholder='Email', autocomplete='off')
+						.form-group
+							//- input#password-2.login-field.login-field-password.form-control.myint(type='password' , name='password', placeholder='password', autocomplete='off')
+							input#password-field.form-control.myint(type='password' , name='password', placeholder='password', autocomplete='off')
+							span.fa.fa-fw.fa-eye.field-icon.toggle-password(toggle='#password-field')
+							//- input#password-3.login-field.login-field-password.form-control.myint(type='password' , name='password', placeholder='password', autocomplete='off')
+							//- .login-footer
+							//- input#show-password(type='checkbox')
+							//- label(for='show-password') Show password
+
+
+							
+					.col-md-12
+						input.btn.btn-dark.form-control.mb-1(type='submit', value='Sign in')
+					.one.p-2
+						a(href='/forgot') Forgot Password
+			script.
+				$(".toggle-password").click(function () {
+				$(this).toggleClass("fa-eye fa-eye-slash");
+				var input = $($(this).attr("toggle"));
+				if (input.attr("type") == "password") {
+				input.attr("type", "text");
+				} else {
+				input.attr("type", "password");
+				}
+				});
+				$('#password-1').hidePassword(true);
+				$('#password-2').showPassword('focus', {
+				toggle: { className: 'my-toggle' }
+				});
+				$('#show-password').change(function () {
+				$('#password-3').hideShowPassword($(this).prop('checked'));
+				});
+
+		.py-3.bg-dark.mb-0.footer
+			.container-fluid
+				p.m-0.p-0.text-center.text-white Copyright © Your Website 2019

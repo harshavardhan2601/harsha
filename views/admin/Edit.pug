@@ -1,0 +1,180 @@
+html
+	include headerpage.pug
+	include main header.pug
+	head
+		title Edit Profile
+		script.
+			var loadFile = function (event) {
+			var output = document.getElementById('output');
+			output.src = URL.createObjectURL(event.target.files[0]);
+			};
+		style.
+			* {
+			margin: 0;
+			padding: 0;
+			}
+			body {
+			font-family: 'Times New Roman';
+			}
+			.col-md-10 {
+			/*background: rgba(0, 0, 0, 0.5);*/
+			box-shadow:0px 4px 10px;
+			padding: 10px;
+			margin-top: 20px;
+			margin-bottom: 100px;
+			}
+			.form-control {
+			padding: 20px;
+			margin-bottom: 30px;
+			}
+			select {
+			padding: 20px;
+			margin-bottom: 30px;
+			}
+			input[type='checkbox'] {
+			height: 15px;
+			width: 15px;
+			}
+			.custom-control-label {
+			font-size: 18px;
+			}
+			.btn-info {
+			width: 100px;
+			border-radius: 0px;
+			font-size: 20px;
+			border: 2px solid lightblue;
+			margin-left: 350px;
+			}
+			.errorCSS {
+			border-color: #ff0047 !important;
+			color: #ff0047 !important;
+			}
+	body
+		//- b=newSignupObj
+		.container
+			form(action='#',name='reg',id='mec',method='post')
+				for data, index in newSignupObj
+					.row
+						.col-md-1
+						.col-md-10
+							h1.text-center(style='padding: 10px;color: tomato') Signup Page
+
+							.row
+								label.label.col-md-3.control-label Surname
+								.col-md-9
+									input#sn.form-control(type='text', name='surname', value=data.surname , autocomplete='off', placeholder='Surname')
+
+							.row
+								label.label.col-md-3.control-label First Name
+								.col-md-9
+									input#fn.form-control(type='text', name='firstname', value=data.firstname autocomplete='off', placeholder='First Name')
+									
+							.row
+								label.label.col-md-3.control-label Last Name
+								.col-md-9
+									input#ln.form-control(type='text', name='lastname', value=data.lastname autocomplete='off', placeholder='Last Name')
+									
+							.row
+								label.label.col-md-3.control-label Emailid
+								.col-md-9
+									input#gmail.form-control(type='text', name='email', value=data.email autocomplete='off', placeholder='Emailid')
+									
+							.row
+								label.label.col-md-3.control-label Password
+								.col-md-9
+									input#pass.form-control(type='password', name='password', value=data.password autocomplete='off', placeholder='Password')
+									
+							.row
+								label.label.col-md-3.control-label Mobile Number
+								.col-md-9
+									input#mn.form-control(type='text', name='mobile_number', value=data.mobile_number autocomplete='off', placeholder='Mobile Number')
+									
+							.row
+								label.label.col-md-3.control-label D.O.B
+								.col-md-9
+									input#dob.form-control.datepicker(type='text', value=data.d_o_b data-date-format='dd/mm/yyyy',data-provide="datepicker", name='d_o_b', placeholder='DD/MM/YYYY')
+									
+							.row
+								label.label.col-md-3.control-label Education
+								.col-md-9
+									input#ed.form-control(type='text', name='education', value=data.education autocomplete='off', placeholder='Education')
+									
+							.row
+								label.label.col-md-3.control-label Occupation
+								.col-md-9
+									input#occ.form-control(type='text', name='occupation', value=data.occupation autocomplete='off', placeholder='Occupation')
+									
+							.row
+								label.label.col-md-3.control-label Blood Group
+								.col-md-9
+									input#bg.form-control(type='text', name='blood_group', value=data.blood_group autocomplete='off', placeholder='Blood Group')
+									
+							.row
+								label.label.col-md-3.control-label Gender
+								.col-md-9
+									.custom-control.custom-radio.custom-control-inline.ml-3
+										if (data.gender == 'Male')
+											input#gender_m.custom-control-input(type='radio', name='gender', value='Male',checked="checked")
+											label.custom-control-label(for='gender_m', style='font-size: 14px;margin-top: 3px;') Male
+										else
+											input#gender_m.custom-control-input(type='radio', name='gender', value='Male')
+											label.custom-control-label(for='gender_m', style='font-size: 14px;margin-top: 3px;') Male
+									.custom-control.custom-radio.custom-control-inline
+										if (data.gender == 'Female')
+											input#gender_f.custom-control-input(type='radio', name='gender',value='Female',checked="checked")
+											label.custom-control-label(for='gender_f', style='font-size: 14px;margin-top: 3px;') Female
+										else
+											input#gender_f.custom-control-input(type='radio', name='gender',value='Female')
+											label.custom-control-label(for='gender_f', style='font-size: 14px;margin-top: 3px;') Female
+							.row
+								label.label.col-md-3.control-label Inproof Type
+								.col-md-9
+									select.custom-select(name='proof',id="identify")
+										if(data.proof == 'Aadhaar Card')
+											option(value='Aadhaar Card',selected='selected') Aadhaar Card
+										else
+											option(value='Aadhaar Card') Aadhaar Card
+										if(data.proof == 'Pan Card')
+											option(value='Pan Card',selected='selected') Pan Card
+										else
+											option(value='Pan Card') Pan Card
+										if(data.proof == 'Driving license')
+											option(value='Driving license',selected='selected') Driving license
+										else
+											option(value='Driving license') Driving license
+										if(data.proof == 'Voter Card')
+											option(value='Voter Card',selected='selected') Voter Card
+										else
+											option(value='Voter Card') Voter Card
+							.row
+								label.label.col-md-3.control-label Inproof Number
+								.col-md-9
+									input#inp.form-control(type='text', name='inproof', value=data.inproof autocomplete='off', placeholder='Inproof Number')
+									
+							.row
+								label.label.col-md-3.control-label Address
+								.col-md-9
+									input#add.form-control(type='text', name='address', value=data.address autocomplete='off', placeholder='Address')
+									
+							.row
+								label.label.col-md-3.control-label City
+								.col-md-9
+									input#ci.form-control(type='text', name='City', value=data.City autocomplete='off', placeholder='City')
+									
+							.row
+								label.label.col-md-3.control-label Pincode
+								.col-md-9
+									input#pc.form-control(type='text', name='pincode', value=data.pincode autocomplete='off', placeholder='Pincode')
+									
+							.row
+								label.label.col-md-3.control-label State
+								.col-md-9
+									input#st.form-control(type='text', name='State', value=data.State autocomplete='off', placeholder='State')
+									
+							//- .row
+							//- 	label.label.col-md-3.control-label Photo
+							//- 	.col-md-5.file_plugin(name='file_attach1')
+							//- 	.col-md-2
+							//- 		img#output(style='width: 100%; height: 150%')
+							button.btn.btn-info(type='submit') Submit
+					.col-md-1

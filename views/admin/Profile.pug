@@ -1,0 +1,134 @@
+html
+	include headerpage.pug
+	include main header.pug
+	head
+		title Profile
+		style.
+	body
+		b=newSignupObj
+		.container-fluid.mt-5 
+			//- .row.form-group
+			//- 	table.table.table-bordered.bg-light
+			//- 		thead
+			//- 			tr
+			//- 				th S.No
+			//- 				th Surname
+			//- 				th First Name
+			//- 				th Last Name
+			//- 				th Email
+			//- 				th mobile Number
+			//- 		tbody#myTable
+			//- 			for data, index in newSignupObj
+			//- 				tr
+			//- 					td= index+1
+			//- 					td= data.surname
+			//- 					td= data.firstname
+			//- 					td= data.lastname
+			//- 					td= data.email
+			//- 					td= data.mobile_number
+			h2.text-center
+				i.fa.fa-user  
+				| Profile
+			hr
+			#home.offset-md-3
+				for data, index in newSignupObj
+					.row.form-group
+						.col-md-3
+							b Surname:
+						.col-md-3
+							span= data.surname
+					.row.form-group
+						.col-md-3
+							b First Name:
+						.col-md-3
+							span= data.firstname
+					.row.form-group
+						.col-md-3
+							b Last Name:
+						.col-md-3
+							span= data.lastname
+					.row.form-group
+						.col-md-3
+							b Email:
+						.col-md-3
+							span= data.email
+					.row.form-group
+						.col-md-3
+							b Password:
+						.col-md-3
+							span= data.password
+					.row.form-group
+						.col-md-3
+							b mobile Number:
+						.col-md-3
+							span= data.mobile_number
+					.row.form-group
+						.col-md-3
+							b D.O.B:
+						.col-md-3
+							span= data.d_o_b
+					.row.form-group
+						.col-md-3
+							b Education:
+						.col-md-3
+							span= data.education
+					.row.form-group
+						.col-md-3
+							b Occupation:
+						.col-md-3
+							span= data.occupation
+					.row.form-group
+						.col-md-3
+							b Blood Group:
+						.col-md-3
+							span= data.blood_group
+					.row.form-group
+						.col-md-3
+							b Gender:
+						.col-md-3
+							span= data.gender
+					.row.form-group
+						.col-md-3
+							b Inproof Type:
+						.col-md-3
+							span= data.proof
+					.row.form-group
+						.col-md-3
+							b Inproof Number:
+						.col-md-3
+							span= data.inproof
+					.row.form-group
+						.col-md-3
+							b Address:
+						.col-md-3
+							span= data.address
+					.row.form-group
+						.col-md-3
+							b City:
+						.col-md-3
+							span= data.City
+					.row.form-group
+						.col-md-3
+							b Pincode:
+						.col-md-3
+							span= data.pincode
+					.row.form-group
+						.col-md-3
+							b State:
+						.col-md-3
+							span= data.State
+					.row.form-group
+						.col-md-3
+							b photo:
+						.col-md-3
+							//- span= data.file_attach1
+							if(data.file_attach1)
+								.col-md-4
+									-var dataImage = data.file_attach1.split('||') 
+										for data,index in dataImage
+											if(index!=0)
+												img(src=data,width='50px',height='50px')
+					div(style='margin-bottom: 10%')
+
+
+						

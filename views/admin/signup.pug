@@ -1,0 +1,393 @@
+html
+	include header.pug
+	include main header.pug
+	head
+		title Signup Page
+		//- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+		//- script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+		//- script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+		//- script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+		//- link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet')
+		link(rel='stylesheet',href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css")
+		script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js')
+		script(type='text/javascript', src='https://code.jquery.com/jquery-1.11.3.min.js')
+		script.
+			function getfilenameonupload(attachfile, filedisname) {
+				console.log('fileUploading');
+				//- alert('haii');
+				//- console.log(attachfile);
+				//- console.log(filedisname);
+				var file_id = attachfile.id;
+				//- console.log(file_id);
+				var x = document.getElementById(file_id);
+				//- console.log(x);
+				if ('files' in x) {
+					if (x.files.length == 0) {} else {
+						for (var i = 0; i < x.files.length; i++) {
+							var file = x.files[i];
+							var file_arr = {};
+							getBase64(file, function(base64result) {
+								var base64result_arr = base64result.split(',');
+								var base64result_str = '';
+								for (var i = 1; i < base64result_arr.length; i++) {
+									base64result_str += base64result_arr[i];
+								}
+								file_arr.base64 = base64result_str;
+								file_arr.filetype = file.type;
+								var filedata = { filedata: file_arr };
+									//- console.log(filedata);
+									//- console.log('==========123============');
+									//- console.log(filedata);
+								$.post('/uploadfiles', { data: filedata }, function(data) {
+									var data = data;
+									var savedpath = data.savedpath;
+									console.log(savedpath);
+									if (filedisname == 'patientphoto') {
+										$('#photopath').val(savedpath);
+										$('#imgspan').show();
+										$('.file_upload1').hide();
+										$('#imgspanphoto').hide();
+										$('#photoscandiv').hide();
+										$('#imgspan').html('<img name="file_attach1" width="100px" height="100px" src="data:' + file_arr.filetype + ';base64,' + file_arr.base64 + '" />');
+										//- $('#imgspan').html('<img name="file_attach1" width="100px" height="100px" src="data:' + file_arr.filetype + ';base64,' + file_arr.base64 + '" />&nbsp;<a href="javascript:void(0)" class="text-danger"><span class="fas fa-trash-alt" id="filephoto" onclick="removefile(id,\'' + savedpath + '\')">delete</span></a>');
+									} 
+									});
+								});
+							}
+						}
+					}
+				}
+				function getBase64(file, callback) {
+					var reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = function() {
+						callback(reader.result);
+					};
+					reader.onerror = function(error) {
+						console.log('Error: ', error);
+					};
+				}
+				function removefile(id, filename, user_id) {
+				//- alert('delete');
+				var id_leng = id.split('_');
+				if (id_leng.length == 2) {
+					id = id_leng[0];
+				} else {
+					id = id;
+				}
+				if (id != 'filephoto' && id != 'surgeonslogo') {
+					var file_s = filename.split('/');
+					var id_val = file_s[2].split('.');
+				}
+				if (id == 'filephoto') {
+					$('#imgspan').hide();
+					$('#imgspanphoto').hide();
+					$('.file_upload1').show();
+					$('#photoscandiv').show();
+					$('#photopath').val('');
+				}
+				}
+		//- script.
+		//- 	var loadFile = function (event) {
+		//- 	var output = document.getElementById('output');
+		//- 	output.src = URL.createObjectURL(event.target.files[0]);
+		//- 	};
+		style.
+			* {
+			margin: 0;
+			padding: 0;
+			}
+			body {
+			font-family: 'Times New Roman';
+			background: url('/images/login2.png');
+			background-size: cover;
+			background-attachment: fixed;
+			}
+			.col-md-8 {
+			/*background: rgba(0, 0, 0, 0.5);*/
+			background-color: #3b4652;
+			box-shadow: -1px 1px 50px 10px black;
+			padding: 10px;
+			margin-top: 120px;
+			margin-bottom: 100px;
+			}
+			.label {
+			font-size: 19px;
+			color: white;
+			font-weight: normal;
+			}
+			.form-control {
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+			border-bottom: 2px solid rgba(225, 255, 255, 0.2);
+			font-size: 21px;
+			color: white;
+			padding: 20px;
+			margin-bottom: 30px;
+			}
+			select {
+			background: rgba(225, 255, 255, 0.2);
+			border: 0;
+			border-radius: 0;
+			border-bottom: 2px solid rgba(225, 255, 255, 0.2);
+			font-size: 21px;
+			color: white;
+			padding: 20px;
+			margin-bottom: 30px;
+			}
+			input[type='checkbox'] {
+			height: 15px;
+			width: 15px;
+			}
+			.custom-control-label {
+			font-size: 18px;
+			color: white;
+			}
+			.btn-info {
+			border-bottom: 0px;
+			width: 100px;
+			border-radius: 0px;
+			font-size: 20px;
+			border: 2px solid lightblue;
+			margin-top: 50px;
+			margin-left: 350px;
+			}
+			.errorCSS {
+			border-color: #ff0047 !important;
+			color: #ff0047 !important;
+			}
+			.file_upload1{
+				margin-right: 10px;
+				margin-top: 10px;
+				height: 140px;
+				width: 100px;
+				border: 1px solid white;
+				font-size: 14px;
+
+			}
+
+
+	body
+		.container.bootstrap-iso
+			form(action='/submit',name='reg',id='mec',method='post')
+				.row
+					.col-md-2
+					.col-md-8
+						h1.text-center(style='padding: 10px;color: tomato') Signup Page
+
+						.row
+							label.label.col-md-3.control-label Surname
+							.col-md-9
+								input#sn.form-control(type='text', name='surname', autocomplete='off', placeholder='Surname')
+
+						.row
+							label.label.col-md-3.control-label First Name
+							.col-md-9
+								input#fn.form-control(type='text', name='firstname', autocomplete='off', placeholder='First Name')
+								
+						.row
+							label.label.col-md-3.control-label Last Name
+							.col-md-9
+								input#ln.form-control(type='text', name='lastname', autocomplete='off', placeholder='Last Name')
+								
+						.row
+							label.label.col-md-3.control-label Emailid
+							.col-md-9
+								input#gmail.form-control(type='text', name='email', autocomplete='off', placeholder='Emailid')
+								
+						.row
+							label.label.col-md-3.control-label Password
+							.col-md-9
+								input#pass.form-control(type='text', name='password', autocomplete='off', placeholder='Password')
+								
+						.row
+							label.label.col-md-3.control-label Confirm Password
+							.col-md-9
+								input#cnpw.form-control(type='text', name='confirm', autocomplete='off', placeholder='Confirm Password')
+								
+						.row
+							label.label.col-md-3.control-label Mobile Number
+							.col-md-9
+								input#mn.form-control(type='text', name='mobile_number', autocomplete='off', placeholder='Mobile Number')
+								
+						.row
+							label.label.col-md-3.control-label D.O.B
+							.col-md-9
+								input#dob.form-control.datepicker(type='text', data-date-format='dd/mm/yyyy',data-provide="datepicker", name='d_o_b', placeholder='DD/MM/YYYY')
+								
+						.row
+							label.label.col-md-3.control-label Education
+							.col-md-9
+								input#ed.form-control(type='text', name='education', autocomplete='off', placeholder='Education')
+								
+						.row
+							label.label.col-md-3.control-label Occupation
+							.col-md-9
+								input#occ.form-control(type='text', name='occupation', autocomplete='off', placeholder='Occupation')
+								
+						.row
+							label.label.col-md-3.control-label Blood Group
+							.col-md-9
+								input#bg.form-control(type='text', name='blood_group', autocomplete='off', placeholder='Blood Group')
+								
+						.row
+							label.label.col-md-3.control-label Gender
+							.col-md-9
+								.custom-control.custom-radio.custom-control-inline.ml-3
+									input#gender_m.custom-control-input(type='radio', name='gender', value='Male', required)
+									label.custom-control-label(for='gender_m', style='font-size: 14px;margin-top: 3px;') Male
+								.custom-control.custom-radio.custom-control-inline
+									input#gender_f.custom-control-input(type='radio', name='gender', value='Female')
+									label.custom-control-label(for='gender_f', style='font-size: 14px;margin-top: 3px;') Female 
+						.row
+							label.label.col-md-3.control-label Inproof Type
+							.col-md-9
+								select.custom-select(name='proof',id="identify", style='background: transparent;color: white',)
+									option(value='', style='color: black') SELECT
+									option(value='Aadhaar Card', style='color: black') Aadhaar Card
+									option(value='Pan Card', style='color: black') Pan Card
+									option(value='Driving license', style='color: black') Driving license
+									option(value='Voter Card', style='color: black') Voter Card
+						.row
+							label.label.col-md-3.control-label Inproof Number
+							.col-md-9
+								input#inp.form-control(type='text', name='inproof', autocomplete='off', placeholder='Inproof Number')
+								
+						.row
+							label.label.col-md-3.control-label Address
+							.col-md-9
+								input#add.form-control(type='text', name='address', autocomplete='off', placeholder='Address')
+								
+						.row
+							label.label.col-md-3.control-label City
+							.col-md-9
+								input#ci.form-control(type='text', name='City', autocomplete='off', placeholder='City')
+								
+						.row
+							label.label.col-md-3.control-label Pincode
+							.col-md-9
+								input#pc.form-control(type='text', name='pincode', autocomplete='off', placeholder='Pincode')
+								
+						.row
+							label.label.col-md-3.control-label State
+							.col-md-9
+								input#st.form-control(type='text', name='State', autocomplete='off', placeholder='State')
+						.row
+							label.label.col-md-3.control-label Photo
+							.col-md-9
+								input#photopath.custom-control-input(name='file_attach1', type='hidden')
+								.input-group-append
+									label.file_upload1(for='file_upload1')
+									input#file_upload1.custom-control-input(type='file', onchange='getfilenameonupload(this,"patientphoto")')
+									span#imgspanphoto
+									span#imgspan
+						//- .row
+						//- 	label.label.col-md-3.control-label Photo
+						//- 	.col-md-5.file_plugin(name='file_attach1')
+						//- 	.col-md-2
+						//- 		img#output(style='width: 100%; height: 150%')
+						button.btn.btn-info(type='submit') Submit
+				.col-md-2
+		script.
+			$(document).ready(function(){
+			var date_input = $('input[name="d_o_b"]'); //our date input has the name "date"
+			var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+			$('body').on('focus', 'input[name="d_o_b"]', function () {
+				$(this).datepicker({
+					container: container,
+					todayHighlight: true,
+					autoclose: true,
+				});
+			});
+			// Creat User Submit Validation
+			$("form[id='mec']").submit(function (e) {
+			// Name Validation
+			var error_fields = [],all_fields = ['#fn','#sn','#ln','#pass','#cnpw','#telno','#gmail','#mn','#dob','#ed','#occ','#bg','#inp','#add','#ci','#pc','#st','#image','#identify'];
+			var email=document.getElementById("gmail").value;
+			for(var i=0; i<all_fields.length; i++ ){
+			$(all_fields[i]).removeClass('errorCSS');
+			}
+			if($('#fn').val() == ''){
+			error_fields.push('#fn');
+			}
+			if($('#sn').val() == ''){
+			error_fields.push('#sn');
+			}
+			if($('#pass').val() == ''){
+			error_fields.push('#pass');
+			}
+			if($('#cnpw').val() == ''){
+			error_fields.push('#cnpw');
+			}
+			if($('#pass').data() == $('#cnpw').data()){
+			error_fields.push('#pass');
+			}
+			if($('#ln').val() == ''){
+			error_fields.push('#ln');
+			}
+			if($('#gmail').val() == ''){
+			error_fields.push('#gmail');
+			}
+			var email_patern=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var e = email.match(email_patern);
+			if(!e){
+				alert ("Please Enter Valid Email");
+				return false;
+			}
+			if(email){
+				email_verify(email);
+			}
+			if($('#mn').val().length < 10){
+			error_fields.push('#mn');
+			}
+			if($('#dob').val() == ''){
+			error_fields.push('#dob');
+			}
+			if($('#ed').val() == ''){
+			error_fields.push('#ed');
+			}
+			if($('#occ').val() == ''){
+			error_fields.push('#occ');
+			}
+			if($('#bg').val() == ''){
+			error_fields.push('#bg');
+			}
+			if($('#inp').val() == ''){
+			error_fields.push('#inp');
+			}
+			if($('#add').val() == ''){
+			error_fields.push('#add');
+			}
+			if($('#ci').val() == ''){
+			error_fields.push('#ci');
+			}
+			if($('#pc').val().length < 6){
+			error_fields.push('#pc');
+			}
+			if($('#st').val() == ''){
+			error_fields.push('#st');
+			}
+			if($('#image').val() == ''){
+			error_fields.push('#image');
+			}
+			if($('#identify').val() == ''){
+			error_fields.push('#identify');
+			}
+			var data=$('#identify').val();
+			console.log(data)
+			console.log('================================')
+			//- if ($("input[name='proof']:checked").length < 1) {
+			//- error_fields.push('#type');
+			//- }
+			for(var i=0; i<error_fields.length; i++ ){
+			console.log('Error in:---------:' + error_fields[i]);
+			$(error_fields[i]).addClass('errorCSS');
+			e.preventDefault();
+			}
+			if(error_fields[0]){
+			$(error_fields[0]).focus();
+			}
+			});
+			});
+include footer.pug
